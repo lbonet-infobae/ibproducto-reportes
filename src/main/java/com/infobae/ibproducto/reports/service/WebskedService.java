@@ -110,13 +110,15 @@ public class WebskedService {
 		}
 	}
 	
-	public MedianDeadlineMiss getMedianDeadlineMiss(String author) {
+	public MedianDeadlineMiss getMedianDeadlineMiss(String author, Date from, Date to) {
 
-		String url = baseUrl + "/stats/medianDeadlineMiss ";
+		String url = baseUrl + "/stats/medianDeadlineMiss";
 		
 		try {
 			HttpResponse<JsonNode> request = Unirest.get(url)
 					.queryString("author", author)
+					.queryString("startTime", from.getTime() / 1000)
+					.queryString("endTime", to.getTime() / 1000)
 					.header("Authorization", "Bearer "+token)
 					.header("Accept", "application/json")
 					.header("Content-Type", "application/json")

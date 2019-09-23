@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.infobae.ibproducto.reports.dto.UserReportDto;
 import com.infobae.ibproducto.reports.dto.UsersReportWrapper;
+import com.infobae.ibproducto.reports.websked.dto.MedianDeadlineMiss;
 import com.infobae.ibproducto.reports.websked.dto.StoryCount;
 import com.infobae.ibproducto.reports.websked.dto.User;
 
@@ -36,10 +37,12 @@ public class ReportsService {
 			UserReportDto userReport = new UserReportDto();
 			
 			StoryCount storyCount = webskedService.getStoryCount(user.getName(), from, to);
+			MedianDeadlineMiss medianDeadlineMiss = webskedService.getMedianDeadlineMiss(user.getName(), from, to);
 			
 			userReport.setName(user.getName().trim());
 			userReport.setUsername(user.getUsername().trim());
 			userReport.setStoryCount((storyCount.getCounts() != null) ? storyCount.getCounts().getTotal() : 0);
+			userReport.setMedianDeadlineMiss(medianDeadlineMiss.getResult());
 			
 			usersReport.add(userReport);
 		}

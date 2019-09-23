@@ -2,13 +2,13 @@ package com.infobae.ibproducto.reports.websked.dto;
 
 public class MedianDeadlineMiss {
 
-	long result;
+	int result;
 
-	public long getResult() {
+	public int getResult() {
 		return result;
 	}
 
-	public void setResult(long result) {
+	public void setResult(int result) {
 		this.result = result;
 	}
 	

@@ -24,6 +24,10 @@ public class UserReportDto {
 	@XmlAttribute
 	@ApiModelProperty()
 	long storyCount;
+	
+	@XmlAttribute
+	@ApiModelProperty()
+	int medianDeadlineMiss;
 
 	public String getName() {
 		return name;
@@ -49,5 +53,13 @@ public class UserReportDto {
 		this.storyCount = storyCount;
 	}
 
+	public int getMedianDeadlineMiss() {
+		return medianDeadlineMiss;
+	}
+
+	public void setMedianDeadlineMiss(int medianDeadlineMiss) {
+		this.medianDeadlineMiss = medianDeadlineMiss;
+	}
+	
 	
 }
