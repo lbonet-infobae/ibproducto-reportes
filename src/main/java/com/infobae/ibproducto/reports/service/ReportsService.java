@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -30,8 +31,8 @@ public class ReportsService {
 		
 		List<UserReportDto> usersReport = new ArrayList<>();
 		
-		List<User> users = webskedService.getUsers();
-				
+		List<User> users = webskedService.getUsers().stream().filter(u -> u.getUsername().contains("infobae")).collect(Collectors.toList());
+
 		for(User user : users) {
 			
 			UserReportDto userReport = new UserReportDto();

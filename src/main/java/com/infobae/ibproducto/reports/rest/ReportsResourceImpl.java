@@ -2,6 +2,8 @@ package com.infobae.ibproducto.reports.rest;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -25,11 +27,25 @@ public class ReportsResourceImpl  implements ReportsResource{
 	
 	@Cacheable("users-reports")
 	@Override
-	public UsersReportWrapper getUsersReport() {
-		LocalDate fromLocalDate = LocalDate.now().minusMonths(1);
+	public UsersReportWrapper getUsersReport(Integer monthNumber) {
+		
+		if(monthNumber == null) {
+			throw new RuntimeException("month number cannot be null");
+		}
+		
+		if(monthNumber <= 0 || monthNumber > 12) {
+			throw new RuntimeException("month number is not valid");
+		}
+		
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		
+		LocalDate fromLocalDate = LocalDate.of(year, monthNumber, 1);
 		Date fromDate = Date.from(fromLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		
-		return reportsService.getUsersReports(fromDate, new Date());
+		LocalDate toLocalDate = fromLocalDate.with(TemporalAdjusters.lastDayOfMonth());
+		Date toDate = Date.from(toLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+		return reportsService.getUsersReports(fromDate, toDate);
 	}
 
 }
