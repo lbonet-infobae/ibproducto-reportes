@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="ibproducto-economia" basedir="ibproducto-economia">
+    
+    <!-- Runs the command npm install in the frontend directory if it has not been run yet. -->
+    <target name="npmInstall" >
+        <!-- Windows configuration-->
+        <exec dir="${project.basedir}"
+              executable="cmd"
+              failonerror="true"
+              osfamily="windows">
+            <arg line="/c npm run build"/>
+        </exec>
+        <!-- *nix configuration -->
+        <exec dir="${project.basedir}"
+              executable="bash"
+              failonerror="true"
+              newenvironment="false"
+              osfamily="unix">
+            <arg value="-c"/>
+            <arg value="npm run build"/>
+        </exec>
+    </target>
+
+</project>
