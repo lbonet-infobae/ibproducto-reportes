@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes.utils;
+package com.infobae.ibproducto.reports.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

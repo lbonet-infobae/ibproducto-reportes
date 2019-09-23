@@ -7,7 +7,7 @@ mysql:
   service:
     host:     ibproducto-db-server
     port:     3306
-    database: ibproducto_reportes
+    database: ibproducto_reports
 
 spring:
   jersey:
@@ -41,3 +41,7 @@ spring:
       hibernate.cache.use_query_cache: true
       hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
     
+websked:
+  config:
+    token:  MQ497B6G1G5RAHG0NCR5063G5OIBPR553RCZIrF7JXY0OLUzn1YzhYilS+dGaHIoMyPLKfKv
+    url:    https://api.infobae.arcPublishing.com/websked

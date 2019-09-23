@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes;
+package com.infobae.ibproducto.reports;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

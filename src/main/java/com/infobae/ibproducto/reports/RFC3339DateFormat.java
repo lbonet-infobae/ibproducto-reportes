@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes;
+package com.infobae.ibproducto.reports;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;

@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes.secure;
+package com.infobae.ibproducto.reports.secure;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
     	.csrf().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/api/economia/cotizacion/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/reports/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/swagger.json").permitAll()
             .anyRequest().permitAll();
 

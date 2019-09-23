@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes;
+package com.infobae.ibproducto.reports;
 
 import java.util.Properties;
 
@@ -16,20 +16,20 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.Environment;
 
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
-@SpringBootApplication(scanBasePackages={"com.infobae.ibproducto.reportes"})
+@SpringBootApplication(scanBasePackages={"com.infobae.ibproducto.reports"})
 @EnableCaching
-public class ReportesApplication {
+public class ReportsApplication {
 
 	@Inject
 	private Environment environment;
 	
-	private static final Logger logger = LoggerFactory.getLogger(ReportesApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReportsApplication.class);
 	
 	public static void main(String[] args) {
 		logger.info("Starting IB Producto");
 		
-		new SpringApplicationBuilder(ReportesApplication.class)
-			.sources(ReportesApplication.class)
+		new SpringApplicationBuilder(ReportsApplication.class)
+			.sources(ReportsApplication.class)
 			.bannerMode(Banner.Mode.OFF)
 			.properties(getProperties())
 			.run(args);

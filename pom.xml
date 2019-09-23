@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.infobae.ibproducto</groupId>
-	<artifactId>reportes</artifactId>
+	<artifactId>reports</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reportes</name>
-	<description>IB Producto Reportes</description>
+	<name>reports</name>
+	<description>IB Producto Reports</description>
 
 	<properties>
 		<java.version>1.8</java.version>

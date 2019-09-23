@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes.mapper;
+package com.infobae.ibproducto.reports.mapper;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;

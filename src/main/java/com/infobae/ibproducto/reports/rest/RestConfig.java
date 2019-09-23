@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes.rest;
+package com.infobae.ibproducto.reports.rest;
 
 import javax.annotation.PostConstruct;
 
@@ -17,6 +17,8 @@ public class RestConfig extends ResourceConfig {
 	public RestConfig() {
 		
 		logger.info("Registering rest APIs");
+		
+		register(ReportsResourceImpl.class);
 		
 		register(io.swagger.jaxrs.listing.ApiListingResource.class);
 		register(io.swagger.jaxrs.listing.SwaggerSerializers.class);

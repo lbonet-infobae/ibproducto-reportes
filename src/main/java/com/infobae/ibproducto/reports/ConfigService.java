@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes;
+package com.infobae.ibproducto.reports;
 
 import java.io.File;
 

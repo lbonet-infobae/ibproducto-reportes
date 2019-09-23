@@ -1,4 +1,4 @@
-package com.infobae.ibproducto.reportes.mapper;
+package com.infobae.ibproducto.reports.mapper;
 
 import java.util.List;
 import java.util.function.Function;
@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
 
-import com.infobae.ibproducto.reportes.utils.StreamUtils;
+import com.infobae.ibproducto.reports.utils.StreamUtils;
 
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.metadata.TypeFactory;
