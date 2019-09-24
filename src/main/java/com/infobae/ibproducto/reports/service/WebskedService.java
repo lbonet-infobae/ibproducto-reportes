@@ -4,7 +4,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,12 +75,19 @@ public class WebskedService {
 		String url = baseUrl + "/stats/storyCount";
 		
 		try {
+			
+			Map<String, Object> params = new HashMap<>();
+			params.put("startTime", from.getTime() / 1000);
+			params.put("endTime", to.getTime() / 1000);
+			params.put("offset", "-0h");
+			params.put("interval", "year");
+			
+			if(author != null) {
+				params.put("author", author);
+			}
+			
 			HttpResponse<JsonNode> request = Unirest.get(url)
-					.queryString("author", author)
-					.queryString("startTime", from.getTime() / 1000)
-					.queryString("endTime", to.getTime() / 1000)
-					.queryString("offset", "-0h")
-					.queryString("interval", "year")
+					.queryString(params)
 					.header("Authorization", "Bearer "+token)
 					.header("Accept", "application/json")
 					.header("Content-Type", "application/json")

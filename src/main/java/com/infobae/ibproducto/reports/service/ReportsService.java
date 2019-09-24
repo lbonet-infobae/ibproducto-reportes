@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.infobae.ibproducto.reports.dto.StoryCountReport;
 import com.infobae.ibproducto.reports.dto.UserReportDto;
 import com.infobae.ibproducto.reports.dto.UsersReportWrapper;
 import com.infobae.ibproducto.reports.websked.dto.MedianDeadlineMiss;
@@ -54,6 +55,24 @@ public class ReportsService {
 		Collections.sort(usersReport, nameComparator);
 				
 		return new UsersReportWrapper(usersReport, users.size());
+	}
+	
+	public StoryCountReport getStoryCountReport(Date from, Date to) {
+		
+		if(from == null || to == null) {
+			throw new RuntimeException("from date and to date cannot be null");
+		}
+		
+		StoryCount storyCount = webskedService.getStoryCount(null, from, to);
+		long storyCountResult = (storyCount.getCounts() != null) ? storyCount.getCounts().getTotal() : 0;
+		
+		StoryCountReport storyCountReport = new StoryCountReport(
+				storyCountResult,
+				from, 
+				to
+			);
+		
+		return storyCountReport;
 	}
 	
 }
