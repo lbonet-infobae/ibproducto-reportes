@@ -45,3 +45,8 @@ websked:
   config:
     token:  MQ497B6G1G5RAHG0NCR5063G5OIBPR553RCZIrF7JXY0OLUzn1YzhYilS+dGaHIoMyPLKfKv
     url:    https://api.infobae.arcPublishing.com/websked
+    reports:
+      cron: 
+        enabled:  true
+        value:    0 39 10 * * *
+        #value:   0 0 0 * * *

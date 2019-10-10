@@ -1,7 +1,5 @@
 package com.infobae.ibproducto.reports.dto;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -21,19 +19,19 @@ public class StoryCountReport {
 	
 	@XmlAttribute
 	@ApiModelProperty()
-	Date from;
+	Integer year;
 	
 	@XmlAttribute
 	@ApiModelProperty()
-	Date to;
+	Integer month;
 	
 	public StoryCountReport() {	}
 	
-	public StoryCountReport(long storyCount, Date from, Date to) {
+	public StoryCountReport(long storyCount, Integer year, Integer month) {
 		super();
 		this.storyCount = storyCount;
-		this.from = from;
-		this.to = to;
+		this.year = year;
+		this.month = month;
 	}
 
 	public long getStoryCount() {
@@ -44,20 +42,20 @@ public class StoryCountReport {
 		this.storyCount = storyCount;
 	}
 
-	public Date getFrom() {
-		return from;
+	public Integer getYear() {
+		return year;
 	}
 
-	public void setFrom(Date from) {
-		this.from = from;
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
-	public Date getTo() {
-		return to;
+	public Integer getMonth() {
+		return month;
 	}
 
-	public void setTo(Date to) {
-		this.to = to;
+	public void setMonth(Integer month) {
+		this.month = month;
 	}
 
 	

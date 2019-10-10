@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.infobae.ibproducto.reports.websked.dto.Counts;
 import com.infobae.ibproducto.reports.websked.dto.MedianDeadlineMiss;
+import com.infobae.ibproducto.reports.websked.dto.SearchResult;
 import com.infobae.ibproducto.reports.websked.dto.StoryCount;
 import com.infobae.ibproducto.reports.websked.dto.User;
 import com.mashape.unirest.http.HttpResponse;
@@ -70,17 +72,66 @@ public class WebskedService {
 		}
 	}
 
-	public StoryCount getStoryCount(String author, Date from, Date to){
+//	public StoryCount getStoryCount(String author, Date from, Date to){
+//	
+//		String url = baseUrl + "/stats/storyCount";
+//		
+//		try {
+//			
+//			Map<String, Object> params = new HashMap<>();
+//			params.put("startTime", from.getTime() / 1000);
+//			params.put("endTime", to.getTime() / 1000);
+//			params.put("offset", "-0h");
+//			params.put("interval", "year");
+//			
+//			if(author != null) {
+//				params.put("author", author);
+//			}
+//			
+//			HttpResponse<JsonNode> request = Unirest.get(url)
+//					.queryString(params)
+//					.header("Authorization", "Bearer "+token)
+//					.header("Accept", "application/json")
+//					.header("Content-Type", "application/json")
+//					.asJson();
+//			
+//			if (request.getStatus() != 200) {
+//				throw new RuntimeException("Invalid validation response GET " + url + 
+//						" Status " + request.getStatus());
+//			}
+//			
+//			Gson gson = new GsonBuilder()
+//					.setDateFormat("yyyy-MM-dd HH:mm:ss")
+//					.create();
+//
+//			JSONArray resultObject = request.getBody().getArray();
+//			
+//			Type type = new TypeToken<Collection<StoryCount>>(){}.getType();
+//			Collection<StoryCount> result = gson.fromJson(resultObject.toString(), type);
+//			
+//			if(result.isEmpty()) {
+//				return new StoryCount();
+//			}
+//			
+//			return (new ArrayList<>(result)).get(0);
+//			
+//		} catch (UnirestException e) {
+//			logger.error("Error getting websked story count", e);
+//			throw new RuntimeException("Error getting websked story count", e);
+//		}
+//	}
 	
-		String url = baseUrl + "/stats/storyCount";
+	public StoryCount getStoryCount(String author, Date from, Date to){
+		
+		String url = baseUrl + "/search";
 		
 		try {
 			
 			Map<String, Object> params = new HashMap<>();
-			params.put("startTime", from.getTime() / 1000);
-			params.put("endTime", to.getTime() / 1000);
-			params.put("offset", "-0h");
-			params.put("interval", "year");
+			params.put("startDate", from.getTime() / 1000);
+			params.put("endDate", to.getTime() / 1000);
+			params.put("sort", "time");
+			params.put("contentType", "article");
 			
 			if(author != null) {
 				params.put("author", author);
@@ -102,16 +153,16 @@ public class WebskedService {
 					.setDateFormat("yyyy-MM-dd HH:mm:ss")
 					.create();
 
-			JSONArray resultObject = request.getBody().getArray();
+			JSONObject resultObject = request.getBody().getObject();
 			
-			Type type = new TypeToken<Collection<StoryCount>>(){}.getType();
-			Collection<StoryCount> result = gson.fromJson(resultObject.toString(), type);
+			SearchResult result = gson.fromJson(resultObject.toString(), SearchResult.class);
 			
-			if(result.isEmpty()) {
-				return new StoryCount();
-			}
+			StoryCount sc = new StoryCount();
+			Counts counts = new Counts();
+			counts.setTotal(result.getTotalResults());
+			sc.setCounts(counts);
 			
-			return (new ArrayList<>(result)).get(0);
+			return sc;
 			
 		} catch (UnirestException e) {
 			logger.error("Error getting websked story count", e);

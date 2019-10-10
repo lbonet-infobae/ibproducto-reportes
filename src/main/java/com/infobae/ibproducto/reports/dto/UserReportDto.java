@@ -23,11 +23,21 @@ public class UserReportDto {
 	
 	@XmlAttribute
 	@ApiModelProperty()
-	long storyCount;
+	int storyCount;
 	
 	@XmlAttribute
 	@ApiModelProperty()
 	int medianDeadlineMiss;
+	
+	public UserReportDto() {}
+	
+	public UserReportDto(String name, String username, int storyCount, int medianDeadlineMiss) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.storyCount = storyCount;
+		this.medianDeadlineMiss = medianDeadlineMiss;
+	}
 
 	public String getName() {
 		return name;
@@ -49,7 +59,7 @@ public class UserReportDto {
 		return storyCount;
 	}
 
-	public void setStoryCount(long storyCount) {
+	public void setStoryCount(int storyCount) {
 		this.storyCount = storyCount;
 	}
 

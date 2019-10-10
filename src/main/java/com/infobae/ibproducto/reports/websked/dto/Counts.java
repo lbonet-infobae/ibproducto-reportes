@@ -2,13 +2,13 @@ package com.infobae.ibproducto.reports.websked.dto;
 
 public class Counts {
 
-	long total;
+	int total;
 	
-	public long getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(long total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 	
