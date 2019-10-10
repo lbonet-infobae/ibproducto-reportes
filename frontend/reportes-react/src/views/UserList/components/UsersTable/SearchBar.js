@@ -4,10 +4,10 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-const SearchBar = props => {
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth() + 1;
 
-  let currentYear = new Date().getFullYear();
-  let currentMonth = new Date().getMonth() + 1;
+const SearchBar = props => {
 
   const [anio, setAnio] = useState(currentYear);
   const [mes, setMes] = useState(currentMonth);
@@ -64,7 +64,7 @@ const SearchBar = props => {
 }
 
 
-const anios = [2019];
+const anios = [currentYear - 1, currentYear];
 
 const meses = [
   { id: 1, name: 'Enero' },

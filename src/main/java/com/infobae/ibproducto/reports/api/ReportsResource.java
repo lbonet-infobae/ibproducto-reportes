@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiParam;
 @Produces({"application/xml", "application/json"})
 public interface ReportsResource {
 	
-	@POST
+	@GET
 	@Path("/storycount/{year}/{month}") @Produces("application/json")
 	@ApiOperation(value="Returns report for all users", response=StoryCountReport.class)
 	public StoryCountReport searchStoryCount(

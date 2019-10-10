@@ -5,7 +5,7 @@ export const HOST = 'http://10.0.101.27:8090/api/reports';
 // console.log('HOST', HOST);
 
 export function storyCount(year, month, callback) {
-  return axios.post(HOST + '/storycount/' + year + '/' + month)
+  return axios.get(HOST + '/storycount/' + year + '/' + month)
     .then(res => callback(res))
     .catch(err => console.log(err));
 

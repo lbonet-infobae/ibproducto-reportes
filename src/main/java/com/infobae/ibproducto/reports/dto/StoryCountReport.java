@@ -15,7 +15,7 @@ public class StoryCountReport {
 
 	@XmlAttribute
 	@ApiModelProperty()
-	long storyCount;
+	Long storyCount;
 	
 	@XmlAttribute
 	@ApiModelProperty()
@@ -27,18 +27,21 @@ public class StoryCountReport {
 	
 	public StoryCountReport() {	}
 	
-	public StoryCountReport(long storyCount, Integer year, Integer month) {
+	public StoryCountReport(Long storyCount, Integer year, Integer month) {
 		super();
 		this.storyCount = storyCount;
 		this.year = year;
 		this.month = month;
+		if(this.storyCount == null) {
+			this.storyCount = 0l;
+		}
 	}
 
 	public long getStoryCount() {
 		return storyCount;
 	}
 
-	public void setStoryCount(long storyCount) {
+	public void setStoryCount(Long storyCount) {
 		this.storyCount = storyCount;
 	}
 

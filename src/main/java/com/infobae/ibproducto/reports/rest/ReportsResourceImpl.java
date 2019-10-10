@@ -39,6 +39,7 @@ public class ReportsResourceImpl  implements ReportsResource{
 		return reportsService.getUsersReports(year, monthNumber);
 	}
 	
+	@Transactional(readOnly = true)
 	@Override
 	public StoryCountReport searchStoryCount(Integer year, Integer monthNumber) {
 
@@ -57,6 +58,7 @@ public class ReportsResourceImpl  implements ReportsResource{
 		return reportsService.getStoryCountReport(year, monthNumber);
 	}
 	
+	@Transactional
 	@Override
 	public void loadDataByYear(Integer year) {
 		

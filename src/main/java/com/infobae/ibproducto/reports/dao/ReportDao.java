@@ -22,6 +22,6 @@ public interface ReportDao extends JpaRepository<ReportDb, Long>{
 	
 	@Query("select new com.infobae.ibproducto.reports.dto.StoryCountReport(SUM(r.storyCount), r.year, r.month) "
 			+ "from ReportDb r where r.year = :year and r.month = :month order by r.storyCount desc")
-	StoryCountReport findStoryCountByYearAndMonth(@Param("year") Integer year, @Param("month") Integer month);
+	Optional<StoryCountReport> findStoryCountByYearAndMonth(@Param("year") Integer year, @Param("month") Integer month);
 	
 }

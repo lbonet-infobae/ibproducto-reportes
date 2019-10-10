@@ -51,7 +51,7 @@ public class ReportsService {
 			throw new RuntimeException("from date and to date cannot be null");
 		}
 		
-		StoryCountReport storyCountReport = reportDao.findStoryCountByYearAndMonth(year, month);
+		StoryCountReport storyCountReport = reportDao.findStoryCountByYearAndMonth(year, month).orElse(new StoryCountReport());
 		
 		return storyCountReport;
 	}
@@ -75,7 +75,7 @@ public class ReportsService {
 			});
 			
 			for(int i = 1; i <= limit; i++) {
-				LocalDate fromLocalDate = LocalDate.of(currentYear, i, 1);
+				LocalDate fromLocalDate = LocalDate.of(year, i, 1);
 				Date fromDate = Date.from(fromLocalDate.atStartOfDay(ZoneOffset.UTC).toInstant());
 				
 				LocalDate toLocalDate = fromLocalDate.with(TemporalAdjusters.lastDayOfMonth());
@@ -87,7 +87,7 @@ public class ReportsService {
 				if(!bdReport.isPresent()) {
 					report = new ReportDb();
 					report.setUser(user);
-					report.setYear(currentYear);
+					report.setYear(year);
 					report.setMonth(i);
 				} else {
 					report = bdReport.get();

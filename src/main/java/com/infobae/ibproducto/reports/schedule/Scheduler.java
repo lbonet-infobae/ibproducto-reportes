@@ -24,6 +24,10 @@ public class Scheduler {
 	@Scheduled(cron = "${websked.config.reports.cron.value}")
 	public void updateReports() {
 		
+		if(!initDataEnabled) {
+			return;
+		}
+		
 		reportsService.loadCurrentMonthData();
 		
 	}
