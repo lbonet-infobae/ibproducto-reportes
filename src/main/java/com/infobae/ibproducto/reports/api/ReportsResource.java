@@ -21,8 +21,15 @@ import io.swagger.annotations.ApiParam;
 public interface ReportsResource {
 	
 	@GET
+	@Path("/storycount/{year}") @Produces("application/json")
+	@ApiOperation(value="Returns story count by year", response=StoryCountReport.class)
+	public StoryCountReport searchStoryCount(
+			@PathParam(value="year") @ApiParam(required=true, value="year number") Integer yearNumber
+		);
+	
+	@GET
 	@Path("/storycount/{year}/{month}") @Produces("application/json")
-	@ApiOperation(value="Returns report for all users", response=StoryCountReport.class)
+	@ApiOperation(value="Returns story count by yeand and month", response=StoryCountReport.class)
 	public StoryCountReport searchStoryCount(
 			@PathParam(value="year") @ApiParam(required=true, value="year number") Integer yearNumber,
 			@PathParam(value="month") @ApiParam(required=true, value="month number") Integer monthNumber
@@ -42,6 +49,5 @@ public interface ReportsResource {
 	public void loadDataByYear(
 			@PathParam(value="year") @ApiParam(required=true, value="year number") Integer year
 		);
-	
 	
 }

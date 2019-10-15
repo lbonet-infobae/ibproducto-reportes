@@ -48,10 +48,21 @@ public class ReportsService {
 	public StoryCountReport getStoryCountReport(Integer year, Integer month) {
 		
 		if(year == null || month == null) {
-			throw new RuntimeException("from date and to date cannot be null");
+			throw new RuntimeException("year or month cannot be null");
 		}
 		
 		StoryCountReport storyCountReport = reportDao.findStoryCountByYearAndMonth(year, month).orElse(new StoryCountReport());
+		
+		return storyCountReport;
+	}
+	
+	public StoryCountReport getStoryCountReport(Integer year) {
+		
+		if(year == null) {
+			throw new RuntimeException("year cannot be null");
+		}
+		
+		StoryCountReport storyCountReport = reportDao.findStoryCountByYear(year).orElse(new StoryCountReport());
 		
 		return storyCountReport;
 	}

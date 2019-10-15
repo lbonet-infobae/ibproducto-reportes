@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages={"com.infobae.ibproducto.reports"})
 @EnableJpaRepositories(value={"com.infobae.ibproducto.reports.dao"})
 @EntityScan(basePackages = "com.infobae.ibproducto.reports.model")
-@EnableCaching
+//@EnableCaching
 @EnableScheduling
 public class ReportsApplication {
 

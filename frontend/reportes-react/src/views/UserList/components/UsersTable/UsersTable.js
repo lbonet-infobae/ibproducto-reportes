@@ -39,16 +39,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersTable = props => {
-  const { className, users, ...rest } = props;
-
   const classes = useStyles();
-
+  const { className, users, ...rest } = props;
   const [empleados, setEmpleados] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth() + 1;
-
 
   async function fetchData() {
     const res = await searchUsers(currentYear, currentMonth);

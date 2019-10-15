@@ -1,16 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import BookRoundedIcon from '@material-ui/icons/BookRounded';
+import { storyCountYear } from '../../../../api';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100%',
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText
-  },
   content: {
     alignItems: 'center',
     display: 'flex'
@@ -19,8 +15,8 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.white,
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.white,
     height: 56,
     width: 56
   },
@@ -30,10 +26,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TotalProfit = props => {
+const TotalCount = props => {
   const { className, ...rest } = props;
-
   const classes = useStyles();
+  const [currentYearCount, setCurrentYearCount] = useState(null);
+  const currentYear = (new Date()).getFullYear();
+
+  async function fetchCount() {
+    const res = await storyCountYear(
+      currentYear, function (res) {
+        return res.data;
+      }
+    );
+
+    setCurrentYearCount(res.storyCount);
+  }
+
+  useEffect(() => {
+    fetchCount();
+  }, []);
 
   return (
     <Card
@@ -52,18 +63,18 @@ const TotalProfit = props => {
               gutterBottom
               variant="body2"
             >
-              TOTAL PROFIT
+              TOTAL {currentYear}
             </Typography>
             <Typography
               color="inherit"
               variant="h3"
             >
-              $23,200
+              {currentYearCount} Artículos
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon className={classes.icon} />
+              <BookRoundedIcon className={classes.icon} />
             </Avatar>
           </Grid>
         </Grid>
@@ -72,8 +83,8 @@ const TotalProfit = props => {
   );
 };
 
-TotalProfit.propTypes = {
+TotalCount.propTypes = {
   className: PropTypes.string
 };
 
-export default TotalProfit;
+export default TotalCount;

@@ -15,6 +15,8 @@ import {
   NotFound as NotFoundView
 } from './views';
 
+import ProtectedRoute from './ProtectedRoute';
+
 const Routes = () => {
   return (
     <Switch>
@@ -23,18 +25,23 @@ const Routes = () => {
         from="/"
         to="/dashboard"
       />
-      <RouteWithLayout
-        component={DashboardView}
-        exact
-        layout={MainLayout}
-        path="/dashboard"
-      />
-      <RouteWithLayout
-        component={UserListView}
-        exact
-        layout={MainLayout}
-        path="/users"
-      />
+      <ProtectedRoute path="/dashboard">
+        <RouteWithLayout
+          component={DashboardView}
+          exact
+          layout={MainLayout}
+          path="/dashboard"
+        />
+      </ProtectedRoute>
+
+      <ProtectedRoute path="/users">
+        <RouteWithLayout
+          component={UserListView}
+          exact
+          layout={MainLayout}
+          path="/users"
+        />
+      </ProtectedRoute>
 
       <RouteWithLayout
         component={TypographyView}
@@ -53,12 +60,6 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/account"
-      />
-      <RouteWithLayout
-        component={SignUpView}
-        exact
-        layout={MinimalLayout}
-        path="/sign-up"
       />
       <RouteWithLayout
         component={SignInView}

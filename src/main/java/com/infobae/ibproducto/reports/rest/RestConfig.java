@@ -19,6 +19,7 @@ public class RestConfig extends ResourceConfig {
 		logger.info("Registering rest APIs");
 		
 		register(ReportsResourceImpl.class);
+		register(AuthResourceImpl.class);
 		
 		register(io.swagger.jaxrs.listing.ApiListingResource.class);
 		register(io.swagger.jaxrs.listing.SwaggerSerializers.class);

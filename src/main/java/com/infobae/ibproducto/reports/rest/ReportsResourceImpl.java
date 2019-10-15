@@ -58,6 +58,17 @@ public class ReportsResourceImpl  implements ReportsResource{
 		return reportsService.getStoryCountReport(year, monthNumber);
 	}
 	
+	@Transactional(readOnly = true)
+	@Override
+	public StoryCountReport searchStoryCount(Integer year) {
+
+		if(year == null) {
+			throw new RuntimeException("year cannot be null");
+		}
+		
+		return reportsService.getStoryCountReport(year);
+	}
+	
 	@Transactional
 	@Override
 	public void loadDataByYear(Integer year) {

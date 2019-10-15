@@ -14,7 +14,7 @@ import {
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import { storyCount } from '../../../../api';
+import { storyCountMonth } from '../../../../api';
 import { data, options } from './chart';
 
 const currentYear = (new Date()).getFullYear();
@@ -37,7 +37,7 @@ const LatestSales = props => {
   const classes = useStyles();
 
   async function fetchNotasPorAnioYMes(anio, mes) {
-    return await storyCount(
+    return await storyCountMonth(
       anio, mes,
       function (res) {
         return res.data;

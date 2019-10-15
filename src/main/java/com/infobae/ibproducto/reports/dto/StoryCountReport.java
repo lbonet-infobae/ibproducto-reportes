@@ -36,6 +36,15 @@ public class StoryCountReport {
 			this.storyCount = 0l;
 		}
 	}
+	
+	public StoryCountReport(Long storyCount, Integer year) {
+		super();
+		this.storyCount = storyCount;
+		this.year = year;
+		if(this.storyCount == null) {
+			this.storyCount = 0l;
+		}
+	}
 
 	public long getStoryCount() {
 		return storyCount;
