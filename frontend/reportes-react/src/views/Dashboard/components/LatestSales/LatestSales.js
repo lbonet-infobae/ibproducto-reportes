@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
 const LatestSales = props => {
   const { className, ...rest } = props;
   const [currentYearCount, setCurrentYearCount] = useState({});
-  const [lastYearCount, setLastYearCount] = useState({});
+  const [loading, setLoading] = useState(false);
   const classes = useStyles();
 
   async function fetchNotasPorAnioYMes(anio, mes) {
@@ -50,6 +50,7 @@ const LatestSales = props => {
   }, []);
 
   async function generateData() {
+    setLoading(true);
 
     //Load Days
     data.labels = [
@@ -82,6 +83,7 @@ const LatestSales = props => {
     }
 
     setCurrentYearCount(data);
+    setLoading(false);
 
   }
 
@@ -106,10 +108,12 @@ const LatestSales = props => {
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>
-          <Bar
-            data={data}
-            options={options}
-          />
+          {loading ? <div>Cargando...</div>
+            : <Bar
+              data={data}
+              options={options}
+            />
+          }
         </div>
       </CardContent>
       <Divider />

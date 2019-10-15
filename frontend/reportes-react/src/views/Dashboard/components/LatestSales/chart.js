@@ -5,13 +5,13 @@ export const data = {
   ],
   datasets: [
     {
-      label: 'Artículos',
+      label: 'Este año',
       backgroundColor: palette.primary.main,
       data: [
       ]
     },
     {
-      label: 'Last year',
+      label: 'Año pasado',
       backgroundColor: palette.neutral,
       data: [
       ]
