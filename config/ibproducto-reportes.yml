@@ -48,5 +48,5 @@ websked:
     reports:
       cron: 
         enabled:  true
-        #value:    0 44 12 * * *
-        value:   0 0 0 * * *
+        value:    0 32 10 * * *
+        #value:   0 0 0 * * *

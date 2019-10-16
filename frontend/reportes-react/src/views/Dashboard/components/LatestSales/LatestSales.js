@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { storyCountMonth } from '../../../../api';
 import { data, options } from './chart';
 
@@ -23,7 +23,10 @@ const useStyles = makeStyles(() => ({
   root: {},
   chartContainer: {
     height: 400,
-    position: 'relative'
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   actions: {
     justifyContent: 'flex-end'
@@ -108,7 +111,7 @@ const LatestSales = props => {
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>
-          {loading ? <div>Cargando...</div>
+          {loading ? <CircularProgress className={classes.progress} />
             : <Bar
               data={data}
               options={options}

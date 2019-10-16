@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 //import { empleados as empleadosFile} from '../../../../data/empleados.js';
 import TableComponent from '../../../../components/Table/TableComponent';
 import { loadEmpleados } from '../../../../api';
@@ -24,7 +24,11 @@ const useStyles = makeStyles(theme => ({
     padding: 0
   },
   inner: {
-    minWidth: 1050
+    minWidth: 1050,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
   },
   nameContainer: {
     display: 'flex',
@@ -71,8 +75,8 @@ const UsersTable = props => {
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <div className={classes.inner}>
-              {!isLoading ?
-                <TableComponent columns={columns} data={empleados} /> : <p>Cargando reporte</p>
+              {isLoading ? <CircularProgress className={classes.progress} /> :
+                <TableComponent columns={columns} data={empleados} />
               }
             </div>
           </PerfectScrollbar>

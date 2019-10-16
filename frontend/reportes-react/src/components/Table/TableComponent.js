@@ -15,44 +15,45 @@ import {
   Tooltip,
   TableSortLabel
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
 
 const asd = null;
 function TableAux({ columns, data }) {
 
-    const defaultColumn = React.useMemo(
-      () => ({
-        // Let's set up our default Filter UI
-        Filter: DefaultColumnFilter
-      }),
-      []
-    );
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter
+    }),
+    []
+  );
   // Use the state and functions returned from useTable to build your UI
- const {
-   getTableProps,
-   headerGroups,
-   page,
-   prepareRow,
-   canPreviousPage,
-   canNextPage,
-   pageOptions,
-   pageCount,
-   gotoPage,
-   nextPage,
-   previousPage,
-   setPageSize,
-   state: [{ pageIndex, pageSize }]
- } = useTable(
-   {
-     columns,
-     data,
-     defaultColumn,
-     asd
-   },
-   useFilters,
-   useSortBy,
-   usePagination
- );
+  const {
+    getTableProps,
+    headerGroups,
+    page,
+    prepareRow,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: [{ pageIndex, pageSize }]
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+      asd
+    },
+    useFilters,
+    useSortBy,
+    usePagination
+  );
 
 
   // Render the UI for your table
@@ -148,12 +149,20 @@ function TableAux({ columns, data }) {
 
 
 
-function TableComponent({columns, data}) {
+function TableComponent({ columns, data }) {
   const columnsAux = React.useMemo(() => columns, []);
- // const dataAux = React.useMemo(() => data, []);
+  // const dataAux = React.useMemo(() => data, []);
+
+  const useStyles = makeStyles(theme => ({
+    tableContainer: {
+      width: '100%'
+    }
+  }));
+
+  const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.tableContainer}>
       <TableAux columns={columnsAux} data={data} />
     </div>
   );
@@ -165,7 +174,7 @@ function DefaultColumnFilter({
 }) {
   const count = preFilteredRows.length;
 
-  function killClick(e){
+  function killClick(e) {
     e.stopPropagation();
   }
 
